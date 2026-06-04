@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Click Data Solutions - Professional IT Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .service-card:hover::before {
+            left: 100%;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+        
+        .floating-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .pulse-glow {
+            animation: pulse-glow 2s infinite;
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 30px rgba(59, 130, 246, 0.8);
+                transform: scale(1.05);
+            }
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .contact-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .nav-blur {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.95);
+        }
+        
+        .section-divider {
+            background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+            height: 2px;
+            width: 100px;
+            margin: 0 auto;
+        }
+
+        .click-animation {
+            animation: click-pulse 2s infinite;
+        }
+        
+        @keyframes click-pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.7; }
+        }
+
+        .logo-ripple {
+            animation: logo-ripple 3s infinite;
+        }
+        
+        @keyframes logo-ripple {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.3); opacity: 0.4; }
+            100% { transform: scale(1.6); opacity: 0; }
+        }
+    
+.service-image{
+width:100%;
+height:220px;
+object-fit:cover;
+border-radius:18px;
+margin-bottom:16px;
+transition:transform .4s ease;
+}
+.service-card:hover .service-image{
+transform:scale(1.06);
+}
+.sticky-contact{
+position:fixed;
+bottom:15px;
+right:15px;
+z-index:9999;
+display:flex;
+gap:10px;
+}
+@media(min-width:768px){
+.sticky-contact{bottom:25px;right:25px;}
+}
+
+</style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 nav-blur border-b border-gray-200">
+        <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2 sm:space-x-4">
+                    <div class="bg-gradient-to-r from-blue-600 to-cyan-500 p-2 sm:p-3 rounded-xl shadow-lg relative overflow-hidden">
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white relative z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <!-- Mouse cursor -->
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" fill="white"/>
+                            <!-- Click point with ripple -->
+                            <circle cx="17" cy="7" r="1" fill="#fbbf24" class="click-animation"/>
+                            <circle cx="17" cy="7" r="2" fill="none" stroke="#fbbf24" stroke-width="1" opacity="0.6" class="logo-ripple"/>
+                            <circle cx="17" cy="7" r="3" fill="none" stroke="#fbbf24" stroke-width="0.5" opacity="0.4" class="logo-ripple" style="animation-delay: 0.5s"/>
+                        </svg>
+                        <!-- Background glow -->
+                        <div class="absolute inset-0 bg-gradient-to-r from-yellow-400/10 to-orange-400/10 rounded-xl"></div>
+                    </div>
+                    <div>
+                        <h1 class="text-sm sm:text-xl font-bold text-gray-800">One Click Data Solutions</h1>
+                        <p class="text-xs sm:text-sm text-gray-500 hidden sm:block">Professional IT Services</p>
+                    </div>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Home</a>
+                    <a href="#services" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Services</a>
+                    <a href="#footer" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Contact</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="lg:hidden text-gray-700 hover:text-blue-600 p-2">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                
+                <!-- Desktop Contact Buttons -->
+                <div class="hidden sm:flex space-x-2 lg:space-x-3">
+                    <a href="tel:+919030309036" class="bg-blue-600 text-white px-3 lg:px-6 py-2 rounded-full hover:bg-blue-700 transition-colors font-medium text-sm">
+                        <i class="fas fa-phone mr-1 lg:mr-2"></i><span class="hidden md:inline">Call Now</span><span class="md:hidden">Call</span>
+                    </a>
+                    <a href="https://wa.me/919030309036" target="_blank" class="bg-green-500 text-white px-3 lg:px-6 py-2 rounded-full hover:bg-green-600 transition-colors font-medium text-sm">
+                        <i class="fab fa-whatsapp mr-1 lg:mr-2"></i><span class="hidden md:inline">WhatsApp</span><span class="md:hidden">WA</span>
+                    </a>
+                </div>
+                
+                <!-- Mobile Contact Button -->
+                <div class="sm:hidden">
+                    <a href="tel:+919030309036" class="bg-blue-600 text-white px-3 py-2 rounded-full hover:bg-blue-700 transition-colors font-medium text-sm">
+                        <i class="fas fa-phone"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="lg:hidden hidden mt-4 pb-4 border-t border-gray-200">
+                <div class="flex flex-col space-y-4 pt-4">
+                    <a href="#home" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Home</a>
+                    <a href="#services" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Services</a>
+                    <a href="#footer" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Contact</a>
+                    <div class="flex space-x-3 pt-2 sm:hidden">
+                        <a href="tel:+919030309036" class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition-colors font-medium text-sm flex-1 text-center">
+                            <i class="fas fa-phone mr-2"></i>Call Now
+                        </a>
+                        <a href="https://wa.me/919030309036" target="_blank" class="bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600 transition-colors font-medium text-sm flex-1 text-center">
+                            <i class="fab fa-whatsapp mr-2"></i>WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient text-white pt-24 sm:pt-32 pb-16 sm:pb-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-40"></div>
+
+<div class="absolute inset-0" style="background:url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1800&q=80') center/cover;opacity:.15"></div>
+
+        <div class="container mx-auto px-4 sm:px-6 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                <div class="space-y-6 sm:space-y-8 text-center lg:text-left">
+                    <div class="space-y-4">
+                        <h2 class="text-3xl sm:text-4xl lg:text-6xl font-bold leading-tight">
+                            Your <span class="text-cyan-300">Trusted</span><br>
+                            IT Partner
+                        </h2>
+                        <p class="text-base sm:text-lg lg:text-xl text-blue-100 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                            One Click Data Solutions is your one-stop destination for data recovery and complete computer care. We focus on making technology simple, reliable, and stress-free, so you can focus on what matters most.
+                        </p>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto lg:mx-0">
+                        <a href="#services" class="bg-white text-blue-600 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:bg-blue-50 transition-all transform hover:scale-105 text-center">
+                            <i class="fas fa-rocket mr-2"></i>Explore Services
+                        </a>
+                        <a href="tel:+919030309036" class="glass-effect px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:bg-white hover:bg-opacity-20 transition-all pulse-glow text-center">
+                            <i class="fas fa-phone mr-2"></i><span class="hidden sm:inline">+91-9030309036</span><span class="sm:hidden">Call Now</span>
+                        </a>
+                    </div>
+                    
+                    <div class="flex items-center justify-center lg:justify-start space-x-6 sm:space-x-12 pt-6 sm:pt-8">
+                        <div class="text-center">
+                            <div class="text-2xl sm:text-3xl font-bold text-cyan-300">500+</div>
+                            <div class="text-blue-200 text-xs sm:text-sm">Happy Clients</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl sm:text-3xl font-bold text-cyan-300">10+</div>
+                            <div class="text-blue-200 text-xs sm:text-sm">Years Experience</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl sm:text-3xl font-bold text-cyan-300">95%</div>
+                            <div class="text-blue-200 text-xs sm:text-sm">Success Rate</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative mt-8 lg:mt-0">
+                    <div class="floating-animation">
+                        <div class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-3xl p-4 sm:p-6 lg:p-8 border border-white border-opacity-20">
+                            <div class="grid grid-cols-2 gap-3 sm:gap-4 lg:gap-6">
+                                <button onclick="showServiceDetails('data-recovery')" class="bg-blue-500 bg-opacity-20 p-3 sm:p-4 lg:p-6 rounded-2xl text-center hover:bg-opacity-30 transition-all transform hover:scale-105 cursor-pointer">
+                                    <div class="bg-gradient-to-br from-blue-400 to-cyan-400 w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-xl flex items-center justify-center mb-2 sm:mb-3 lg:mb-4 mx-auto shadow-lg transform transition-all hover:rotate-6 hover:shadow-xl">
+                                        <i class="fas fa-database text-lg sm:text-xl lg:text-2xl text-white drop-shadow-lg"></i>
+                                    </div>
+                                    <h3 class="font-semibold text-xs sm:text-sm lg:text-base">Data Recovery</h3>
+                                </button>
+                                <button onclick="showServiceDetails('pc-repair')" class="bg-green-500 bg-opacity-20 p-3 sm:p-4 lg:p-6 rounded-2xl text-center hover:bg-opacity-30 transition-all transform hover:scale-105 cursor-pointer">
+                                    <div class="bg-gradient-to-br from-green-400 to-emerald-400 w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-xl flex items-center justify-center mb-2 sm:mb-3 lg:mb-4 mx-auto shadow-lg transform transition-all hover:rotate-6 hover:shadow-xl">
+                                        <i class="fas fa-laptop text-lg sm:text-xl lg:text-2xl text-white drop-shadow-lg"></i>
+                                    </div>
+                                    <h3 class="font-semibold text-xs sm:text-sm lg:text-base">PC Repair</h3>
+                                </button>
+                                <button onclick="showServiceDetails('server-solutions')" class="bg-purple-500 bg-opacity-20 p-3 sm:p-4 lg:p-6 rounded-2xl text-center hover:bg-opacity-30 transition-all transform hover:scale-105 cursor-pointer">
+                                    <div class="bg-gradient-to-br from-purple-400 to-violet-400 w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-xl flex items-center justify-center mb-2 sm:mb-3 lg:mb-4 mx-auto shadow-lg transform transition-all hover:rotate-6 hover:shadow-xl">
+                                        <i class="fas fa-server text-lg sm:text-xl lg:text-2xl text-white drop-shadow-lg"></i>
+                                    </div>
+                                    <h3 class="font-semibold text-xs sm:text-sm lg:text-base">Servers</h3>
+                                </button>
+                                <button onclick="showServiceDetails('cctv-networking')" class="bg-red-500 bg-opacity-20 p-3 sm:p-4 lg:p-6 rounded-2xl text-center hover:bg-opacity-30 transition-all transform hover:scale-105 cursor-pointer">
+                                    <div class="bg-gradient-to-br from-red-400 to-rose-400 w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-xl flex items-center justify-center mb-2 sm:mb-3 lg:mb-4 mx-auto shadow-lg transform transition-all hover:rotate-6 hover:shadow-xl">
+                                        <i class="fas fa-video text-lg sm:text-xl lg:text-2xl text-white drop-shadow-lg"></i>
+                                    </div>
+                                    <h3 class="font-semibold text-xs sm:text-sm lg:text-base">CCTV</h3>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-gray-50 to-white">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="text-center mb-8 sm:mb-12">
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">Our <span class="text-gradient">Services</span></h2>
+                <div class="section-divider mb-4"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Your one-stop destination for data recovery and complete computer care. We make technology simple, reliable, and stress-free, so you can focus on what matters most.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+                <!-- Data Recovery -->
+                <div class="service-card bg-white rounded-3xl p-6 shadow-xl border border-gray-100">
+                    <div class="bg-gradient-to-r from-blue-500 to-blue-600 w-16 h-16 rounded-2xl flex items-center justify-center mb-4 mx-auto shadow-lg">
+                        <i class="fas fa-database text-white text-2xl"></i>
+                    </div>
+                    <img loading="lazy" class="service-image" src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80" alt="Data Recovery"><h3 class="text-xl font-bold text-gray-800 mb-3 text-center">Data Recovery</h3>
+                    <p class="text-gray-600 text-center mb-4 leading-relaxed text-sm">
+                        Lost your photos, documents, or important files? We can get them back from broken computers, phones, and USB drives.
+                    </p>
+                    <button onclick="showServiceDetails('data-recovery')" class="w-full bg-blue-600 text-white py-2 rounded-2xl hover:bg-blue-700 transition-all font-medium text-sm">
+                        <i class="fas fa-info-circle mr-2"></i>Learn More
+                    </button>
+                </div>
+
+                <!-- Laptop/PC Repair -->
+                <div class="service-card bg-white rounded-3xl p-6 shadow-xl border border-gray-100">
+                    <div class="bg-gradient-to-r from-green-500 to-green-600 w-16 h-16 rounded-2xl flex items-center justify-center mb-4 mx-auto shadow-lg">
+                        <i class="fas fa-laptop text-white text-2xl"></i>
+                    </div>
+                    <img loading="lazy" class="service-image" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80" alt="Laptop/PC Repair"><h3 class="text-xl font-bold text-gray-800 mb-3 text-center">Laptop/PC Repair</h3>
+                    <p class="text-gray-600 text-center mb-4 leading-relaxed text-sm">
+                        Computer running slow or won't turn on? We fix laptops and desktops fast. Broken screens, virus removal, and more.
+                    </p>
+                    <button onclick="showServiceDetails('pc-repair')" class="w-full bg-green-600 text-white py-2 rounded-2xl hover:bg-green-700 transition-all font-medium text-sm">
+                        <i class="fas fa-info-circle mr-2"></i>Learn More
+                    </button>
+                </div>
+
+                <!-- Server Solutions -->
+                <div class="service-card bg-white rounded-3xl p-6 shadow-xl border border-gray-100">
+                    <div class="bg-gradient-to-r from-purple-500 to-purple-600 w-16 h-16 rounded-2xl flex items-center justify-center mb-4 mx-auto shadow-lg">
+                        <i class="fas fa-server text-white text-2xl"></i>
+                    </div>
+                    <img loading="lazy" class="service-image" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80" alt="Server Solutions"><h3 class="text-xl font-bold text-gray-800 mb-3 text-center">Server Solutions</h3>
+                    <p class="text-gray-600 text-center mb-4 leading-relaxed text-sm">
+                        Need computers to work together in your office? We set up and maintain business computer systems that just work.
+                    </p>
+                    <button onclick="showServiceDetails('server-solutions')" class="w-full bg-purple-600 text-white py-2 rounded-2xl hover:bg-purple-700 transition-all font-medium text-sm">
+                        <i class="fas fa-info-circle mr-2"></i>Learn More
+                    </button>
+                </div>
+
+                <!-- CCTV & Networking -->
+                <div class="service-card bg-white rounded-3xl p-6 shadow-xl border border-gray-100">
+                    <div class="bg-gradient-to-r from-red-500 to-red-600 w-16 h-16 rounded-2xl flex items-center justify-center mb-4 mx-auto shadow-lg">
+                        <i class="fas fa-video text-white text-2xl"></i>
+                    </div>
+                    <img loading="lazy" class="service-image" src="https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=1200&q=80" alt="CCTV & Networking"><h3 class="text-xl font-bold text-gray-800 mb-3 text-center">CCTV & Networking</h3>
+                    <p class="text-gray-600 text-center mb-4 leading-relaxed text-sm">
+                        Want to keep your home or business safe? We install security cameras and WiFi networks you can check from your phone.
+                    </p>
+                    <button onclick="showServiceDetails('cctv-networking')" class="w-full bg-red-600 text-white py-2 rounded-2xl hover:bg-red-700 transition-all font-medium text-sm">
+                        <i class="fas fa-info-circle mr-2"></i>Learn More
+                    </button>
+                </div>
+            </div>
+            
+
+        </div>
+    </section>
+
+    <!-- Service Details Modal -->
+    <div id="serviceModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl sm:rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto mx-4">
+            <div class="p-4 sm:p-6 lg:p-8">
+                <div class="flex justify-between items-center mb-4 sm:mb-6">
+                    <h3 id="modalTitle" class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-800 pr-4"></h3>
+                    <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700 text-xl sm:text-2xl flex-shrink-0">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div id="modalContent" class="space-y-4 sm:space-y-6 text-gray-600 leading-relaxed text-sm sm:text-base">
+                    <!-- Content will be populated by JavaScript -->
+                </div>
+                <div class="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
+                    <a href="tel:+919030309036" class="flex-1 bg-blue-600 text-white py-3 px-4 sm:px-6 rounded-2xl hover:bg-blue-700 transition-all font-medium text-center text-sm sm:text-base">
+                        <i class="fas fa-phone mr-2"></i>Call Now
+                    </a>
+                    <button onclick="closeModal()" class="flex-1 bg-gray-200 text-gray-800 py-3 px-4 sm:px-6 rounded-2xl hover:bg-gray-300 transition-all font-medium text-sm sm:text-base">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer" class="relative bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 text-white py-8 sm:py-12 overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-r from-blue-600/20 to-cyan-500/20"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 sm:px-6 relative z-10">
+            <!-- Main Footer Content -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-6 sm:mb-8">
+                <!-- Company Info -->
+                <div class="space-y-4 text-center md:text-left lg:col-span-2">
+                    <div class="flex items-center justify-center md:justify-start space-x-3">
+                        <div class="bg-gradient-to-r from-blue-600 to-cyan-500 p-2 rounded-lg shadow-lg relative overflow-hidden">
+                            <svg class="w-5 h-5 text-white relative z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <!-- Mouse cursor -->
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" fill="white"/>
+                                <!-- Click point with ripple -->
+                                <circle cx="17" cy="7" r="1" fill="#fbbf24" class="click-animation"/>
+                                <circle cx="17" cy="7" r="2" fill="none" stroke="#fbbf24" stroke-width="1" opacity="0.6" class="logo-ripple"/>
+                                <circle cx="17" cy="7" r="3" fill="none" stroke="#fbbf24" stroke-width="0.5" opacity="0.4" class="logo-ripple" style="animation-delay: 0.5s"/>
+                            </svg>
+                            <!-- Background glow -->
+                            <div class="absolute inset-0 bg-gradient-to-r from-yellow-400/10 to-orange-400/10 rounded-lg"></div>
+                        </div>
+                        <div>
+                            <h3 class="text-base sm:text-lg font-bold">One Click Data Solutions</h3>
+                            <p class="text-blue-200 text-xs sm:text-sm">Professional IT Services</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 text-xs sm:text-sm leading-relaxed max-w-md mx-auto md:mx-0">
+                        Your one-stop destination for data recovery and complete computer care in Kadapa. We make technology simple, reliable, and stress-free for you.
+                    </p>
+                    <div class="flex gap-2 justify-center md:justify-start">
+                        <a href="tel:+919030309036" class="bg-blue-600 hover:bg-blue-700 px-3 sm:px-4 py-2 rounded-full transition-all font-medium text-xs sm:text-sm">
+                            <i class="fas fa-phone mr-1"></i>Call Now
+                        </a>
+                        <a href="https://wa.me/919030309036" target="_blank" class="bg-green-500 hover:bg-green-600 px-3 sm:px-4 py-2 rounded-full transition-all font-medium text-xs sm:text-sm">
+                            <i class="fab fa-whatsapp mr-1"></i>WhatsApp
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="space-y-4 text-center md:text-left">
+                    <h4 class="text-base sm:text-lg font-bold text-cyan-300">Contact Info</h4>
+                    <div class="space-y-3 text-xs sm:text-sm">
+                        <div class="flex items-center justify-center md:justify-start space-x-2">
+                            <i class="fas fa-phone text-blue-400 w-4 flex-shrink-0"></i>
+                            <span class="text-gray-300">+91-9030309036</span>
+                        </div>
+                        <div class="flex items-center justify-center md:justify-start space-x-2">
+                            <i class="fas fa-envelope text-blue-400 w-4 flex-shrink-0"></i>
+                            <span class="text-gray-300 text-xs break-all">oneclickdatasolutions@gmail.com</span>
+                        </div>
+                        <div class="flex items-start justify-center md:justify-start space-x-2">
+                            <i class="fas fa-map-marker-alt text-blue-400 w-4 mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-300 text-xs sm:text-sm">39/383-2-2, Road No4, Om-Shanthi Nagar, Kadapa, AP 516001</span>
+                        </div>
+                        <div class="flex items-center justify-center md:justify-start space-x-2">
+                            <i class="fas fa-clock text-blue-400 w-4 flex-shrink-0"></i>
+                            <span class="text-gray-300 text-xs">Mon-Sat: 9AM-8PM</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Services & Links -->
+                <div class="space-y-4 text-center md:text-left">
+                    <h4 class="text-base sm:text-lg font-bold text-cyan-300">Our Services</h4>
+                    <div class="space-y-2 text-xs sm:text-sm">
+                        <a href="#services" class="block text-gray-300 hover:text-cyan-300 transition-colors">Data Recovery Solutions</a>
+                        <a href="#services" class="block text-gray-300 hover:text-cyan-300 transition-colors">Laptop/PC Repair</a>
+                        <a href="#services" class="block text-gray-300 hover:text-cyan-300 transition-colors">Server Management</a>
+                        <a href="#services" class="block text-gray-300 hover:text-cyan-300 transition-colors">CCTV & Networking</a>
+                        <a href="#services" class="block text-gray-300 hover:text-cyan-300 transition-colors">Software Installation</a>
+                        <a href="#services" class="block text-gray-300 hover:text-cyan-300 transition-colors">IT Consulting</a>
+                    </div>
+                    
+
+                </div>
+            </div>
+            
+            <!-- Social Media & Stats -->
+            <div class="border-t border-gray-700/50 pt-4 sm:pt-6">
+                <div class="flex flex-col space-y-4 md:space-y-0 md:flex-row md:justify-between md:items-center">
+                    <!-- Social Media -->
+                    <div class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4">
+                        <span class="text-gray-300 font-medium text-xs sm:text-sm">Follow Us:</span>
+                        <div class="flex space-x-2">
+                            <a href="https://facebook.com/oneclickdatasolutions" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all transform hover:scale-110">
+                                <i class="fab fa-facebook-f text-xs sm:text-sm"></i>
+                            </a>
+                            <a href="https://youtube.com/@oneclickdatasolutions" target="_blank" class="bg-red-600 hover:bg-red-700 text-white w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all transform hover:scale-110">
+                                <i class="fab fa-youtube text-xs sm:text-sm"></i>
+                            </a>
+                            <a href="https://wa.me/919030309036" target="_blank" class="bg-green-500 hover:bg-green-600 text-white w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all transform hover:scale-110">
+                                <i class="fab fa-whatsapp text-xs sm:text-sm"></i>
+                            </a>
+                            <a href="https://instagram.com/oneclickdatasolutions" target="_blank" class="bg-pink-500 hover:bg-pink-600 text-white w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all transform hover:scale-110">
+                                <i class="fab fa-instagram text-xs sm:text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Stats -->
+                    <div class="flex items-center justify-center space-x-4 sm:space-x-6">
+                        <div class="text-center">
+                            <div class="text-lg sm:text-xl font-bold text-cyan-300">500+</div>
+                            <div class="text-xs text-gray-400">Clients</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-lg sm:text-xl font-bold text-cyan-300">10+</div>
+                            <div class="text-xs text-gray-400">Years</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-lg sm:text-xl font-bold text-cyan-300">95%</div>
+                            <div class="text-xs text-gray-400">Success</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="border-t border-gray-700/50 mt-4 sm:mt-6 pt-4 text-center">
+                <p class="text-gray-400 text-xs sm:text-sm">
+                    &copy; 2025 One Click Data Solutions. All rights reserved.<br class="sm:hidden">
+                    <span class="sm:inline"> | </span><span class="text-cyan-300">Trusted IT Partner in Kadapa</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Service details data
+        const serviceDetails = {
+            'data-recovery': {
+                title: 'Data Recovery Services',
+                content: `
+                    <div class="space-y-4">
+                        <p><strong>Professional Data Recovery Solutions</strong></p>
+                        <p>We specialize in recovering lost, deleted, or corrupted data from all types of storage devices. Our advanced techniques and state-of-the-art equipment ensure maximum recovery success rates.</p>
+                        
+                        <div class="bg-blue-50 p-4 rounded-2xl">
+                            <h4 class="font-semibold text-blue-800 mb-2">What We Recover:</h4>
+                            <ul class="space-y-1 text-blue-700">
+                                <li> Hard Drives (HDD & SSD)</li>
+                                <li> USB Flash Drives & Memory Cards</li>
+                                <li> RAID Arrays & NAS Systems</li>
+                                <li> Mobile Phones & Tablets</li>
+                                <li> Optical Media (CD/DVD/Blu-ray)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-green-50 p-4 rounded-2xl">
+                            <h4 class="font-semibold text-green-800 mb-2">Recovery Process:</h4>
+                            <ul class="space-y-1 text-green-700">
+                                <li> Free Initial Diagnosis</li>
+                                <li> Detailed Recovery Report</li>
+                                <li> No Data, No Charge Policy</li>
+                                <li> Secure & Confidential Process</li>
+                                <li> 24-48 Hour Turnaround</li>
+                            </ul>
+                        </div>
+                        
+                        <p class="text-sm text-gray-500">Success Rate: 95%</p>
+                    </div>
+                `
+            },
+            'pc-repair': {
+                title: 'Laptop/PC Repair Services',
+                content: `
+                    <div class="space-y-4">
+                        <p><strong>Expert Computer Repair & Maintenance</strong></p>
+                        <p>From hardware failures to software issues, we provide comprehensive repair services for all computer brands and models. Fast, reliable, and affordable solutions.</p>
+                        
+                        <div class="bg-green-50 p-4 rounded-2xl">
+                            <h4 class="font-semibold text-green-800 mb-2">Hardware Services:</h4>
+                            <ul class="space-y-1 text-green-700">
+                                <li> Screen & Keyboard Replacement</li>
+                                <li> Motherboard & Component Repair</li>
+                                <li> RAM & Storage Upgrades</li>
+                                <li> Power Supply & Battery Issues</li>
+                                <li> Cooling System Maintenance</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-purple-50 p-4 rounded-2xl">
+                            <h4 class="font-semibold text-purple-800 mb-2">Software Services:</h4>
+                            <ul class="space-y-1 text-purple-700">
+                                <li> Operating System Installation</li>
+                                <li> Virus & Malware Removal</li>
+                                <li> Performance Optimization</li>
+                                <li> Data Backup & Migration</li>
+                                <li> Software Installation & Updates</li>
+                            </ul>
+                        </div>
+                        
+                        <p class="text-sm text-gray-500">Same Day Service Available</p>
+                    </div>
+                `
+            },
+            'server-solutions': {
+                title: 'Server Solutions',
+                content: `
+                    <div class="space-y-4">
+                        <p><strong>Enterprise Server Management</strong></p>
+                        <p>Complete server solutions for businesses of all sizes. From setup to maintenance, we ensure your servers run efficiently and securely.</p>
+                        
+                        <div class="bg-purple-50 p-4 rounded-2xl">
+                            <h4 class="font-semibold text-purple-800 mb-2">Server Services:</h4>
+                            <ul class="space-y-1 text-purple-700">
+                                <li> Server Installation & Configuration</li>
+                                <li> Windows & Linux Server Setup</li>
+                                <li> Active Directory Management</li>
+                                <li> Email Server Configuration</li>
+                                <li> Database Server Optimization</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-orange-50 p-4 rounded-2xl">
+                            <h4 class="font-semibold text-orange-800 mb-2">Monitoring & Support:</h4>
+                            <ul class="space-y-1 text-orange-700">
+                                <li> 24/7 Server Monitoring</li>
+                                <li> Automated Backup Solutions</li>
+                                <li> Security Updates & Patches</li>
+                                <li> Performance Optimization</li>
+                                <li> Disaster Recovery Planning</li>
+                            </ul>
+                        </div>
+                        
+                        <p class="text-sm text-gray-500">99.9% Uptime Guarantee | Remote & On-site Support</p>
+                    </div>
+                `
+            },
+            'cctv-networking': {
+                title: 'CCTV & Networking Solutions',
+                content: `
+                    <div class="space-y-4">
+                        <p><strong>Complete Security & Network Solutions</strong></p>
+                        <p>Protect your property and ensure reliable connectivity with our professional CCTV and networking services. Custom solutions for homes and businesses.</p>
+                        
+                        <div class="bg-red-50 p-4 rounded-2xl">
+                            <h4 class="font-semibold text-red-800 mb-2">CCTV Services:</h4>
+                            <ul class="space-y-1 text-red-700">
+                                <li> HD & 4K Camera Installation</li>
+                                <li> DVR/NVR System Setup</li>
+                                <li> Remote Viewing Configuration</li>
+                                <li> Motion Detection & Alerts</li>
+                                <li> Night Vision Solutions</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-2xl">
+                            <h4 class="font-semibold text-blue-800 mb-2">Networking Services:</h4>
+                            <ul class="space-y-1 text-blue-700">
+                                <li> WiFi Network Setup & Optimization</li>
+                                <li> Router & Switch Configuration</li>
+                                <li> Network Security Implementation</li>
+                                <li> Cable Management & Installation</li>
+                                <li> VPN & Remote Access Setup</li>
+                            </ul>
+                        </div>
+                        
+                        <p class="text-sm text-gray-500">Free Site Survey</p>
+                    </div>
+                `
+            }
+        };
+
+        // Show service details
+        function showServiceDetails(serviceId) {
+            const service = serviceDetails[serviceId];
+            if (service) {
+                document.getElementById('modalTitle').textContent = service.title;
+                document.getElementById('modalContent').innerHTML = service.content;
+                document.getElementById('serviceModal').classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('serviceModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('serviceModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Map function
+        function openMap() {
+            alert('Opening Google Maps...\n\n39/431-18, Road Number 12, Vivekananda Nagar, Y.S.Nagar, Kadapa, Andhra Pradesh 516001');
+        }
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(card);
+        });
+
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.className = 'fas fa-bars text-xl';
+            } else {
+                icon.className = 'fas fa-times text-xl';
+            }
+        });
+        
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.add('hidden');
+                mobileMenuBtn.querySelector('i').className = 'fas fa-bars text-xl';
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('shadow-lg');
+            } else {
+                nav.classList.remove('shadow-lg');
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97dcf55c148ce89d',t:'MTc1NzY1NDQ1Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+<div class="sticky-contact">
+<a href="tel:+919030309036" style="background:#2563eb;color:#fff;padding:14px 16px;border-radius:999px;text-decoration:none;font-weight:bold;box-shadow:0 10px 25px rgba(0,0,0,.2)">Call</a>
+<a href="https://wa.me/919030309036" target="_blank" style="background:#22c55e;color:#fff;padding:14px 16px;border-radius:999px;text-decoration:none;font-weight:bold;box-shadow:0 10px 25px rgba(0,0,0,.2)">WhatsApp</a>
+</div>
+
+</body>
+</html>
